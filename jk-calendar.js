@@ -14,6 +14,7 @@ const JK_Calendar = (config = {}) => {
     let __date__ = new Date();
     let __y__ = config.year;
     let __m__ = config.month;
+    let __d__ = __date__.getDate();
 
     let __config__ = {
         weekDayLabel: "short_name",
@@ -29,17 +30,13 @@ const JK_Calendar = (config = {}) => {
     if (!__config__.year && !__config__.month) {
         __m__ = __date__.getMonth();
         __y__ = __date__.getFullYear();
-        __d__ = __date__.getDate();
 
         __config__.month = __m__ + 1;
         __config__.year = __y__;
     } else {
         __m__ = __config__.month - 1;
         __y__ = __config__.year;
-        __d__ = __date__.getDate();
     }
-
-    console.table(__config__);
 
 
     let __calendar__ = {
@@ -184,7 +181,9 @@ const JK_Calendar = (config = {}) => {
             for (let i = 0; i < __currentMonthStartDayIndex__; i++) {
                 __days__.unshift({
                     label: __getDayOfWeek__(countDays, __config__.weekDayLabel, 2024, __m__ - 1),
-                    day: countDays
+                    day: countDays,
+                    currentMonth: false,
+                    currentDate: false
                 });
                 countDays--;
             }
@@ -197,7 +196,9 @@ const JK_Calendar = (config = {}) => {
         for (let i = __days__.length; i < 42; i++) {
             __days__.push({
                 label: __getDayOfWeek__(start, __config__.weekDayLabel, 2024, __m__ + 1),
-                day: start
+                day: start,
+                currentMonth: false,
+                currentDate: false
             });
 
             start++;
@@ -227,7 +228,9 @@ const JK_Calendar = (config = {}) => {
         for (let i = 1; i <=  __totalNumberOfDaysInCurrentMonth__; i++) {
             __days__.push({
                 label: __getDayOfWeek__(i, __config__.weekDayLabel),
-                day: i
+                day: i,
+                currentMonth: true,
+                currentDate: i === __d__ ? true : false
             });
         }
 
