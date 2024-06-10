@@ -37,3 +37,4 @@ const myCalendar = JK_Calendar({
 ```
 
 ## Output
+![image](https://github.com/jawadk116/simple-calendar/assets/78857810/3c4c50fb-3cdc-47b1-a56f-f2e9d0c8c282)
