@@ -244,6 +244,17 @@ const JK_Calendar = (config = {}) => {
     }
 
 
+    const __getLabels__ = () => {
+        let labels = [];
+
+        __weekDays__.forEach(day => {
+            labels.push(day[__config__.weekDayLabel]);
+        });
+
+        return labels;
+    }
+
+
     const __bootCalendar__ = () => {
         __totalNumberOfDaysInCurrentMonth__ = __getDaysInMonth__();
         __currentMonthStartingDay__  = __getDayOfWeek__(1, "full_name");
@@ -296,9 +307,22 @@ const JK_Calendar = (config = {}) => {
 
     __calendar__.getCurrentDayShortName = () => {
         return __getDayOfWeek__(__calendar__.getCurrentDate, "short_name");
-    }        
+    }     
+
+    __calendar__.getMonths = () => {
+        return __months__;
+    }
+    
+    __calendar__.getLabels = () => {
+        return __getLabels__();
+    }
 
     __calendar__.getCalendar = () => {
+        return {
+            labels: __getLabels__(),
+            days: __calendar__.days
+        };
+
         return __calendar__.days;
     }  
     
