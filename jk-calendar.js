@@ -382,8 +382,7 @@ const JK_Calendar = (config = {}) => {
     }
 
     __calendar__.calendarPrettyPrint = () => {
-        console.log(__calendar__);
-        console.table(__calendar__.getCalendar());
+        console.table(__calendar__.days);
     }
 
     return __calendar__;
